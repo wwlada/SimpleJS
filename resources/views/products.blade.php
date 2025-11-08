@@ -9,7 +9,7 @@
     <script src="/js/myJs.js" defer></script>
 </head>
     <body>
-        <div data-list data-refresh-url="{{route('products.index')}}">
+        <div style="border: 1px solid red;" data-list data-refresh-url="{{route('products.index')}}">
             @foreach($products as $product)
                 <div data-row="{{ $product->id }}">
                     <input type="text"
