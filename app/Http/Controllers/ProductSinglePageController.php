@@ -10,7 +10,7 @@ class ProductSinglePageController extends Controller
     // 1) View
     public function index()
     {
-        return view('products.index');
+        return view('productsContent.index');
     }
 
     // 2) Read (list JSON)

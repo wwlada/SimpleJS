@@ -49,7 +49,7 @@ function renderProducts(products) {
 
 /* ========== CREATE ========== */
 async function createProduct(name) {
-    const response = await fetch('/products', {
+    const response = await fetch('/products-create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

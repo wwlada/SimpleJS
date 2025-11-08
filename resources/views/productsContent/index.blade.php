@@ -10,7 +10,7 @@
 
 <h2>Products Table</h2>
 
-@include('products.table')
+@include('productsContent.table')
 
 <script src="{{ asset('js/products/products.js') }}"></script>
 </body>
