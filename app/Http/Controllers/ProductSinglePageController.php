@@ -20,6 +20,20 @@ class ProductSinglePageController extends Controller
         return response()->json($products);
     }
 
+    //getProductById
+    public function getProductById($id)
+    {
+        $product = Products::find($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Product not found'], 404);
+        }
+
+        return response()->json([
+            'product' => $product
+        ]);
+    }
+
     // 3) Create
     public function createProduct(Request $request)
     {

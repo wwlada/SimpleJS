@@ -169,15 +169,34 @@ saveBtn?.addEventListener('click', async () => {
 });
 
 // Klik na EDIT dugme u tabeli
-function handleEdit(id) {
-    const product = products.find(p => String(p.id) === String(id));
-    if (!product) return;
+async function handleEdit(id) {
+    try {
+        const response = await fetch(`/products/${id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        });
 
-    // Popuni formu i prebaci u edit mod
-    editingId = String(product.id);
-    nameInput.value = product.name;
-    saveBtn.textContent = 'Update';
+        if (!response.ok) {
+            const text = await response.text();
+            throw new Error('Error fetching product: ' + text.slice(0, 200));
+        }
+
+        const data = await response.json();
+        const product = data.product ?? data;
+
+        // Prebaci u edit mod sa podacima iz API-ja
+        editingId = String(product.id);
+        nameInput.value = product.name ?? '';
+        saveBtn.textContent = 'Update';
+    } catch (e) {
+        console.error(e);
+        alert(e.message || 'Could not load product.');
+    }
 }
+
 
 // Delegiranje klikova na ceo tbody (jedan listener za sve dugmiće)
 tbody.addEventListener('click', (e) => {
