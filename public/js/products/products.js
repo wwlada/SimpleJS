@@ -60,10 +60,10 @@ async function createProduct(name) {
         body: JSON.stringify({ name })
     });
 
-    if (!response.ok) {
-        const text = await response.text();
-        throw new Error('Error creating product: ' + text.slice(0, 200));
-    }
+    // if (!response.ok) {
+    //     const text = await response.text();
+    //     throw new Error('Error creating product: ' + text.slice(0, 200));
+    // }
 
     try {
         const data = await response.json();

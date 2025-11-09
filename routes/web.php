@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JsUsersController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,6 +8,9 @@ use App\Http\Controllers\ProductSinglePageController;
 
 
 Route::resource('/products', ProductController::class)->only(['index', 'store', 'update', 'destroy']);
+
+Route::resource('/users', JsUsersController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+Route::get('/users-json', [JsUsersController::class, 'getUsersJson']);
 
 Route::get('/products-page', [ProductSinglePageController::class, 'index'])->name('products.page');
 Route::get('/products-json', [ProductSinglePageController::class, 'getAllProducts']);
